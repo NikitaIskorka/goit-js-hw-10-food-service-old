@@ -8,25 +8,22 @@ const refs = {
   themeSwitch: document.querySelector('.theme-switch__toggle'),
 };
 // ПЕРЕЛЮЧЕНИЯ ТЕМЫ И СОХРАНЕНИЯ ДАННОЙ В LOCALSTORGE
-refs.body.classList.add('light-theme');
+console.log(Theme.DARK);
 refs.themeSwitch.addEventListener('change', e => {
   if (e.target.checked) {
-    refs.body.classList.replace('light-theme', 'dark-theme');
-    localStorage.setItem('theme', 'dark-theme');
+    refs.body.classList.replace(Theme.LIGHT, Theme.DARK);
+    localStorage.setItem('theme', Theme.DARK);
   } else {
-    refs.body.classList.replace('dark-theme', 'light-theme');
-    localStorage.setItem('theme', 'light-theme');
+    refs.body.classList.replace(Theme.DARK, Theme.LIGHT);
+    localStorage.setItem('theme', Theme.LIGHT);
   }
 });
 // СОХРАННИЕНИЕ ТЕМЫ ПОСЛЕ ПЕРЕЗАГРУЗКИ
 const savedTheme = localStorage.getItem('theme');
 
-if (savedTheme === 'dark-theme') {
-  refs.body.classList.add('dark-theme');
+if (savedTheme === Theme.DARK) {
+  refs.body.classList.add(Theme.DARK);
   refs.themeSwitch.checked = true;
-}
-
-if (savedTheme === 'light-theme') {
-  refs.body.classList.add('light-theme');
-  refs.themeSwitch.checked = false;
+} else {
+  refs.body.classList.add(Theme.LIGHT);
 }
